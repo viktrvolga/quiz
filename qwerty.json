@@ -1,0 +1,32 @@
+{
+  "questions": [
+    {
+      "id": "a37cffc8-478f-4654-931e-72fa04b9bdcb",
+      "text": "1 + 1",
+      "options": [
+        {
+          "id": "e9103242-635b-49b5-a3ed-001791c49c76",
+          "text": "3",
+          "isCorrect": false
+        },
+        {
+          "id": "2ba9ba86-a53e-4f62-9428-08e8ad2d3191",
+          "text": "2",
+          "isCorrect": true
+        },
+        {
+          "id": "a3d07f9a-f69b-4534-9492-660baeaeea0a",
+          "text": "0",
+          "isCorrect": false
+        }
+      ],
+      "selectedOptions": [
+        {
+          "id": "a3d07f9a-f69b-4534-9492-660baeaeea0a",
+          "text": "0",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}

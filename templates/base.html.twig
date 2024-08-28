@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        {% block javascripts %}
+        {% endblock %}
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                color: #333;
+                padding: 20px;
+                margin: 0;
+            }
+
+            h1 {
+                text-align: center;
+                color: #4a4a7d;
+            }
+
+            form {
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            label {
+                font-size: 1.1em;
+                margin-bottom: 10px;
+                display: block;
+                color: #4a4a7d;
+            }
+
+            select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1em;
+            }
+
+            option {
+                padding: 10px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .alert {
+                padding: 15px;
+                margin-bottom: 20px;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+
+            .alert-danger {
+                color: #a94442;
+                background-color: #f2dede;
+                border-color: #ebccd1;
+            }
+        </style>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

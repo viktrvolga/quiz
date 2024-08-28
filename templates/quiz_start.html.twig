@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Start Quiz{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Quiz</h1>
+    <p>Click the button below to start the quiz.</p>
+
+    <ul>
+    {% for questionnaire in available %}
+       <li><a href="{{ path('quiz_start', {'questionnaireId': questionnaire.id}) }}" target="_self">{{ questionnaire.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

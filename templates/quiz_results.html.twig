@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block body %}
+    <h2>Правильные ответы</h2>
+    <ul>
+        {% for question in correctQuestions %}
+            <li>
+                <strong>{{ question.questionText }}</strong>
+                <ul>
+                    {% for option in question.options %}
+                        {% if option.selected and option.correct %}
+                            <li>
+                                ✅ {{ option.text }}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Неправильные ответы</h2>
+    <ul>
+        {% for question in incorrectQuestions %}
+            <li>
+                <strong>{{ question.questionText }}</strong>
+
+                <p>Корректные варианты:</p>
+                <ul>
+                    {% for option in question.options %}
+                        {% if option.correct %}
+                            <li>
+                                ✅ {{ option.text }}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+                <p>Выбранные пользователем:</p>
+                {% set hasSelectedOptions = false %}
+                <ul>
+                    {% for option in question.options %}
+                        {% if option.selected %}
+                            {% set hasSelectedOptions = true %}
+                            <li>
+                                {% if option.correct %}✅{% else %}❌{% endif %} {{ option.text }}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+                {% if not hasSelectedOptions %}
+                    <p>---</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path('quiz_welcome') }}" class="btn btn-primary mt-4">Начать заново</a>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+    <h1>Questionnaire</h1>
+
+    {% if errors is defined and errors is not empty %}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Обнаружены ошибки:</h4>
+            <ul class="mb-0">
+                {% for error in errors %}
+                    <li><i class="fas fa-exclamation-circle"></i> {{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post" action="{{ path('quiz_process', {'sessionId': id}) }}" onsubmit="return validateForm();">
+        {% for question in questions %}
+            <div class="form-group">
+                <label for="{{ question.questionId }}">{{ question.questionText }}</label>
+                <select name="{{ question.questionId }}[]" id="{{ question.questionId }}" multiple>
+                    {% for options in question.options %}
+                        <option value="{{ options.id }}">{{ options.text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% endfor %}
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            const errorMessages = [];
+            const selects = document.querySelectorAll('select');
+
+            selects.forEach(select => {
+                if (select.selectedOptions.length === 0) {
+                    errorMessages.push(`Вы должны выбрать хотя бы один вариант для вопроса: ${select.previousElementSibling.textContent}`);
+                    select.classList.add('is-invalid');
+                } else {
+                    select.classList.remove('is-invalid');
+                }
+            });
+
+            if (errorMessages.length > 0) {
+                displayErrors(errorMessages);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return false;
+            }
+
+            return true;
+        }
+
+        function displayErrors(messages) {
+            let errorContainer = document.querySelector('.alert-danger ul');
+
+            if (!errorContainer) {
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-danger';
+                alertDiv.role = 'alert';
+                alertDiv.innerHTML = `
+                    <h4 class="alert-heading">Обнаружены ошибки:</h4>
+                    <ul class="mb-0"></ul>
+                `;
+                document.querySelector('form').insertAdjacentElement('beforebegin', alertDiv);
+                errorContainer = alertDiv.querySelector('ul');
+            }
+
+            errorContainer.innerHTML = messages.map(msg => `<li><i class="fas fa-exclamation-circle"></i> ${msg}</li>`).join('');
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,6 @@
+controllers:
+    resource:
+        path: ../src/QuestionnaireSession/Controller/
+        namespace: App\QuestionnaireSession\Controller
+    type: attribute
+
